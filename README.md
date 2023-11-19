@@ -1,21 +1,31 @@
-# server side
+## server side
 
+```
 cd server
 make
 cd build
-./server portno
+./server {portno}
+```
 
-# client side
+## client side
 
+```
 cd client
 make
 cd build
-./client host portno
+./client {host} {portno}
+```
 
-# cleanup
+## cleanup
 
+```
+# server
 cd server
 make clean
+```
 
+```
+# client
 cd client
 make clean
+```
