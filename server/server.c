@@ -82,7 +82,7 @@ void *connection_handler( void *sockfd ) {
     int clientfd = *(int*) sockfd;
 
     // send(Enter an user)
-    send( clientfd, "Enter an user GWW,SBB,LW,BOSS,Sushi,Pooh : ", 50, 0 );
+    send( clientfd, "Enter an user a1, a2, a3, c1, c2, c3 : ", 50, 0 );
     char name[10];
 
     // recv(user name)
@@ -91,12 +91,12 @@ void *connection_handler( void *sockfd ) {
 
     // send(user group)
     int group;
-    if (strcmp(name, "GWW") == 0) { send(clientfd, "GWW is in AOS-students group\n", 40, 0); group = 1; }
-	else if (strcmp(name, "SBB") == 0) { send(clientfd, "SBB is in AOS-students group\n", 40, 0); group = 1; }
-	else if (strcmp(name, "LW") == 0) { send(clientfd, "LW is in AOS-students group\n", 40, 0); group = 1; }
-	else if (strcmp(name, "BOSS") == 0) { send(clientfd, "BOSS is in CSE-students group\n", 40, 0); group = 2; }
-	else if (strcmp(name, "Sushi") == 0) { send(clientfd, "Sushi is in CSE-students group\n", 40, 0); group = 2; }
-	else if (strcmp(name, "Pooh") == 0) { send(clientfd, "Pooh is in CSE-students group\n", 40, 0); group = 2; }
+    if (strcmp(name, "a1") == 0) { send(clientfd, "a1 is in AOS-students group\n", 40, 0); group = 1; }
+	else if (strcmp(name, "a2") == 0) { send(clientfd, "a2 is in AOS-students group\n", 40, 0); group = 1; }
+	else if (strcmp(name, "a3") == 0) { send(clientfd, "a3 is in AOS-students group\n", 40, 0); group = 1; }
+	else if (strcmp(name, "c1") == 0) { send(clientfd, "c1 is in CSE-students group\n", 40, 0); group = 2; }
+	else if (strcmp(name, "c2") == 0) { send(clientfd, "c2 is in CSE-students group\n", 40, 0); group = 2; }
+	else if (strcmp(name, "c3") == 0) { send(clientfd, "c3 is in CSE-students group\n", 40, 0); group = 2; }
 
     char buf[BUFFER_SIZE] = "";
     int i;
@@ -105,7 +105,7 @@ void *connection_handler( void *sockfd ) {
         bzero(buf, BUFFER_SIZE); // init
         recv( clientfd, buf, sizeof(buf),0);
        
-        // 切cmd to token
+        // 切 cmd to token
         char token[4][20];
 		char *delim = " ";
 		char *pch;
@@ -150,52 +150,52 @@ void *connection_handler( void *sockfd ) {
                 strcpy(file[file_count].owner, name );
                 file[file_count].group = group;
                 file[file_count].flag = 0;
-                if (strcmp(name, "GWW") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "SBB");
-                    strcpy(file[file_count].same_group_mem[1], "LW");
-                    strcpy(file[file_count].other_group_mem[0], "BOSS");
-                    strcpy(file[file_count].other_group_mem[1], "Sushi");
-                    strcpy(file[file_count].other_group_mem[2], "Pooh");
+                if (strcmp(name, "a1") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "a2");
+                    strcpy(file[file_count].same_group_mem[1], "a3");
+                    strcpy(file[file_count].other_group_mem[0], "c1");
+                    strcpy(file[file_count].other_group_mem[1], "c2");
+                    strcpy(file[file_count].other_group_mem[2], "c3");
                 }
 
-                else if (strcmp(name, "SBB") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "GWW");
-                    strcpy(file[file_count].same_group_mem[1], "LW");
-                    strcpy(file[file_count].other_group_mem[0], "BOSS");
-                    strcpy(file[file_count].other_group_mem[1], "Sushi");
-                    strcpy(file[file_count].other_group_mem[2], "Pooh");
+                else if (strcmp(name, "a2") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "a1");
+                    strcpy(file[file_count].same_group_mem[1], "a3");
+                    strcpy(file[file_count].other_group_mem[0], "c1");
+                    strcpy(file[file_count].other_group_mem[1], "c2");
+                    strcpy(file[file_count].other_group_mem[2], "c3");
                 }
 
-                else if (strcmp(name, "LW") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "SBB");
-                    strcpy(file[file_count].same_group_mem[1], "GWW");
-                    strcpy(file[file_count].other_group_mem[0], "BOSS");
-                    strcpy(file[file_count].other_group_mem[1], "Sushi");
-                    strcpy(file[file_count].other_group_mem[2], "Pooh");
+                else if (strcmp(name, "a3") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "a2");
+                    strcpy(file[file_count].same_group_mem[1], "a1");
+                    strcpy(file[file_count].other_group_mem[0], "c1");
+                    strcpy(file[file_count].other_group_mem[1], "c2");
+                    strcpy(file[file_count].other_group_mem[2], "c3");
                 }
 
-                else if (strcmp(name, "BOSS") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "Sushi");
-                    strcpy(file[file_count].same_group_mem[1], "Pooh");
-                    strcpy(file[file_count].other_group_mem[0], "GWW");
-                    strcpy(file[file_count].other_group_mem[1], "SBB");
-                    strcpy(file[file_count].other_group_mem[2], "LW");
+                else if (strcmp(name, "c1") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "c2");
+                    strcpy(file[file_count].same_group_mem[1], "c3");
+                    strcpy(file[file_count].other_group_mem[0], "a1");
+                    strcpy(file[file_count].other_group_mem[1], "a2");
+                    strcpy(file[file_count].other_group_mem[2], "a3");
                 }
 
-                else if (strcmp(name, "Sushi") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "BOSS");
-                    strcpy(file[file_count].same_group_mem[1], "Pooh");
-                    strcpy(file[file_count].other_group_mem[0], "GWW");
-                    strcpy(file[file_count].other_group_mem[1], "SBB");
-                    strcpy(file[file_count].other_group_mem[2], "LW");
+                else if (strcmp(name, "c2") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "c1");
+                    strcpy(file[file_count].same_group_mem[1], "c3");
+                    strcpy(file[file_count].other_group_mem[0], "a1");
+                    strcpy(file[file_count].other_group_mem[1], "a2");
+                    strcpy(file[file_count].other_group_mem[2], "a3");
                 }
 
-                else if (strcmp(name, "Pooh") == 0 ) {
-                    strcpy(file[file_count].same_group_mem[0], "Sushi");
-                    strcpy(file[file_count].same_group_mem[1], "BOSS");
-                    strcpy(file[file_count].other_group_mem[0], "GWW");
-                    strcpy(file[file_count].other_group_mem[1], "SBB");
-                    strcpy(file[file_count].other_group_mem[2], "LW");
+                else if (strcmp(name, "c3") == 0 ) {
+                    strcpy(file[file_count].same_group_mem[0], "c2");
+                    strcpy(file[file_count].same_group_mem[1], "c1");
+                    strcpy(file[file_count].other_group_mem[0], "a1");
+                    strcpy(file[file_count].other_group_mem[1], "a2");
+                    strcpy(file[file_count].other_group_mem[2], "a3");
                 }
 
                 fclose(fp);
