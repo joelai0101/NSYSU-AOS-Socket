@@ -1,22 +1,22 @@
 # server/Makefile
 
-BUILD_DIR = build
-TARGET = $(BUILD_DIR)/server
+BUILD_DIR = build  # 定義編譯產生的檔案存放的目錄
+TARGET = $(BUILD_DIR)/server  # 定義最終目標檔案的路徑和名稱
 
-all: $(TARGET)
+all: $(TARGET)  # 定義預設目標，依賴於 $(TARGET)
 
-$(TARGET): $(BUILD_DIR)/server.o | $(BUILD_DIR)
-	gcc -o $@ $^ -pthread
+$(TARGET): $(BUILD_DIR)/server.o | $(BUILD_DIR)  # 產生目標檔案，依賴於 server.o 和 $(BUILD_DIR) 目錄
+	gcc -o $@ $^ -pthread  # 編譯命令，加上 -pthread 選項以支援多執行緒
 
-$(BUILD_DIR)/server.o: server.c | $(BUILD_DIR)
-	gcc -c $< -o $@
+$(BUILD_DIR)/server.o: server.c | $(BUILD_DIR)  # 產生 server.o，依賴於 server.c 和 $(BUILD_DIR) 目錄
+	gcc -c $< -o $@  # 編譯命令
 
-$(BUILD_DIR):
-	mkdir -p $@
+$(BUILD_DIR):  # 產生 $(BUILD_DIR) 目錄
+	mkdir -p $@  # 建立目錄的命令
 
-clean:
-	rm -rf *.o $(BUILD_DIR)
+clean:  # 清除目標
+	rm -rf *.o $(BUILD_DIR)  # 刪除所有 .o 檔案和 $(BUILD_DIR) 目錄
 
-dep:
-	gcc -M *.c > .depend
-	sinclude .depend
+dep:  # 產生依賴檔案
+	gcc -M *.c > .depend  # 產生依賴檔案的命令
+	sinclude .depend  # 包含依賴檔案
