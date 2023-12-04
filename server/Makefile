@@ -1,7 +1,9 @@
 # server/Makefile
 
-BUILD_DIR = build  # 定義編譯產生的檔案存放的目錄
-TARGET = $(BUILD_DIR)/server  # 定義最終目標檔案的路徑和名稱
+# 定義編譯產生的檔案存放的目錄
+BUILD_DIR = build
+# 定義最終目標檔案的路徑和名稱
+TARGET = $(BUILD_DIR)/server
 
 all: $(TARGET)  # 定義預設目標，依賴於 $(TARGET)
 
